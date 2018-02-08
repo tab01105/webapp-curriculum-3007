@@ -19,7 +19,12 @@ object CompositeFutureChallenge extends App {
     random.nextInt(10)
   }
 
-  val compositeFuture: Future[Int] = ???
+  val compositeFuture: Future[Int] = for {
+    r1 <- f1
+    r2 <- f2
+    r3 <- f3
+    r4 <- f4
+  } yield r1 * r2 * r3 * r4
 
   compositeFuture onComplete {
     case Success(value) => println(value)
